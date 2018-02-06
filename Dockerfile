@@ -37,14 +37,22 @@ RUN apk -U update && \
     rm -rf /tmp/src && \
     rm -rf /var/cache/apk/*
 
-ADD https://github.com/timhaak/es-curator-cleanup.git /es-curator-cleanup
-
 WORKDIR /es-curator-cleanup
+
+ADD https://github.com/timhaak/es-curator-cleanup.git /es-curator-cleanup
 
 RUN pipenv install --system
 
-ADD ./run.sh /run.sh
+ADD ./files/start.sh /start.sh
 
-RUN chmod u+x /run.sh
+RUN chmod u+x /start.sh
 
-CMD /run.sh
+ENV MAX_DAYS="3" \
+    MAX_INDEXES="1" \
+    MAX_SUB_INDEXES="1" \
+    ES_SERVER="" \
+    ES_SERVER_PORT="" \
+    ES_SERVER_USERNAME="" \
+    ES_SERVER_PASSWORD=""
+
+CMD /start.sh
