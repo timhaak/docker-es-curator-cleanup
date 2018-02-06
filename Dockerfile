@@ -2,8 +2,7 @@ FROM python:alpine
 
 ENV LANG="en_US.UTF-8" \
     LANGUAGE="en_US.UTF-8" \
-    TERM="xterm" \
-    TZ="/usr/share/zoneinfo/Africa/Johannesburg"
+    TERM="xterm"
 
 ARG HTTPS_PROXY=""
 ARG HTTP_PROXY=""
