@@ -5,6 +5,9 @@ ENV LANG="en_US.UTF-8" \
     TERM="xterm" \
     TZ="/usr/share/zoneinfo/Africa/Johannesburg"
 
+ARG HTTPS_PROXY=""
+ARG HTTP_PROXY=""
+
 RUN apk -U update && \
     apk upgrade && \
     apk add --no-cache \
