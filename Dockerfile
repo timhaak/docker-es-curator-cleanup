@@ -36,3 +36,15 @@ RUN apk -U update && \
     apk del .build-deps && \
     rm -rf /tmp/src && \
     rm -rf /var/cache/apk/*
+
+ADD https://github.com/timhaak/es-curator-cleanup.git /es-curator-cleanup
+
+WORKDIR /es-curator-cleanup
+
+RUN pipenv install --system
+
+ADD ./run.sh /run.sh
+
+RUN chmod u+x /run.sh
+
+CMD /run.sh
