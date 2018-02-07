@@ -41,7 +41,7 @@ WORKDIR /es-curator-cleanup
 
 ADD https://github.com/timhaak/es-curator-cleanup.git /es-curator-cleanup
 
-RUN /es-curator-cleanup && \
+RUN cd /es-curator-cleanup && \
     pipenv install --system
 
 ADD ./files/start.sh /start.sh
