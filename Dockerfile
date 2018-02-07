@@ -54,6 +54,7 @@ ENV MAX_DAYS="3" \
     ES_SERVER_PORT="" \
     ES_SERVER_USERNAME="" \
     ES_SERVER_PASSWORD="" \
-    FILTER_PREFIX=""
+    FILTER_PREFIX="" \
+    LOG_LEVEL="INFO"
 
 CMD ["/start.sh"]
