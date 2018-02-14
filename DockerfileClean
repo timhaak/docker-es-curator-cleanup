@@ -1,0 +1,32 @@
+FROM artifactory.mmih.biz:5000/es-curator-base
+
+
+RUN apk -U update && \
+    apk upgrade && \
+    rm -rf /tmp/src && \
+    rm -rf /var/cache/apk/*
+
+RUN git clone https://github.com/timhaak/es-curator-cleanup.git /es-curator-cleanup && \
+    cd /es-curator-cleanup && \
+    pipenv install --system
+
+WORKDIR /es-curator-cleanup
+
+COPY ./files/startClean.sh /startClean.sh
+
+RUN chmod u+x /startClean.sh
+
+ENV MAX_DAYS="3" \
+    MAX_INDEXES="1" \
+    MAX_SUB_INDEXES="1" \
+    ES_SERVER="" \
+    ES_SERVER_PORT="" \
+    ES_SERVER_USERNAME="" \
+    ES_SERVER_PASSWORD="" \
+    FILTER_PREFIX="" \
+    LOG_LEVEL="INFO" \
+    REDIS_HOST="redis" \
+    REDIS_PORT="6379" \
+    REDIS_DB="0"
+
+CMD ["/startClean.sh"]

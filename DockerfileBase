@@ -1,0 +1,58 @@
+FROM python:alpine
+
+ENV LANG="en_US.UTF-8" \
+    LANGUAGE="en_US.UTF-8" \
+    TERM="xterm"
+
+ENV KUBECTL_VERSION="v1.9.3"
+
+ARG HTTPS_PROXY=""
+ARG HTTP_PROXY=""
+
+RUN sed -i.back -E -e 's/v\d\.\d/edge/' /etc/apk/repositories && \
+    apk --update-cache --no-cache add busybox busybox-extras && \
+    apk upgrade --update-cache --available --no-cache && \
+    apk add --no-cache \
+      docker docker-zsh-completion \
+      ca-certificates curl \
+      git \
+      openssh \
+      vim \
+      wget \
+      zsh \
+    && \
+    apk add --no-cache --virtual .build-deps \
+      build-base postgresql-dev libffi-dev \
+      && \
+    wget http://ftp.gnu.org/gnu/bash/bash-4.4.tar.gz -O /bash.tar.gz && \
+    tar -xzpvf /bash.tar.gz && \
+    cd /bash* && \
+    ./configure && \
+    make && \
+    make install && \
+    cd / && \
+    rm -rf /bash* && \
+    pip install pipenv && \
+    find /usr/local \
+      \( -type d -a -name test -o -name tests \) \
+      -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
+      -exec rm -rf '{}' + && \
+    runDeps="$( \
+        scanelf --needed --nobanner --recursive /usr/local \
+                | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+                | sort -u \
+                | xargs -r apk info --installed \
+                | sort -u \
+    )" && \
+    apk add --virtual .rundeps $runDeps && \
+    apk del .build-deps && \
+    rm -rf /tmp/src && \
+    rm -rf /var/cache/apk/*
+
+
+# Install kubectl
+# Note: Latest version may be found on:
+# https://aur.archlinux.org/packages/kubectl-bin/
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
+mv kubectl /usr/local/bin/kubectl  && \
+chmod u+x /usr/local/bin/kubectl
