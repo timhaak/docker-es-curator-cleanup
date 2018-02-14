@@ -14,9 +14,9 @@ WORKDIR /es-curator-cleanup
 
 COPY ./files/startClean.sh /startClean.sh
 COPY ./files/startLoop.sh /startLoop.sh
+COPY ./files/startLoop.sh /startWorker.sh
 
-RUN chmod u+x /startClean.sh
-RUN chmod u+x /startLoop.sh
+RUN chmod u+x /startClean.sh /startLoop.sh /startWorker.sh
 
 ENV MAX_DAYS="3" \
     MAX_INDEXES="1" \
@@ -31,4 +31,4 @@ ENV MAX_DAYS="3" \
     REDIS_PORT="6379" \
     REDIS_DB="0"
 
-CMD ["/startClean.sh"]
+CMD ["/startLoop.sh"]

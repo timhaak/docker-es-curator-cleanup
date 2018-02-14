@@ -1,5 +1,4 @@
 #!/bin/ash
-rm -rf /es-curator-cleanup/curator_config.yml /es-curator-cleanup/curator_action.yml
 
 export MAX_DAYS
 export MAX_INDEXES
@@ -14,5 +13,5 @@ export REDIS_PORT
 export REDIS_HOST
 export REDIS_DB
 
-# /usr/local/bin/python3 /es-curator-cleanup/clean_indexes.py
-/usr/local/bin/python3 /es-curator-cleanup/test.py
+echo rq worker --url redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}
+rq worker --url redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}

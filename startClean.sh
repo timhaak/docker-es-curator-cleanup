@@ -11,8 +11,7 @@ export ES_SERVER_PASSWORD
 export FILTER_PREFIX
 export LOG_LEVEL
 export REDIS_PORT
-export REDIS_HOST
 export REDIS_DB
+export REDIS_HOST
 
-# /usr/local/bin/python3 /es-curator-cleanup/clean_indexes.py
-/usr/local/bin/python3 /es-curator-cleanup/test.py
+/usr/local/bin/python3 /es-curator-cleanup/clean_indexes.py
