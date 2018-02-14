@@ -3,5 +3,5 @@ docker build  \
   --rm \
   --no-cache \
   --pull \
-  --file ./DockerfileClean \
+  --file ./DockerfileCleanWorker \
   -t artifactory.mmih.biz:5000/es-curator-cleanup-worker .
