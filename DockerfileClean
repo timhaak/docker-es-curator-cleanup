@@ -31,4 +31,4 @@ ENV MAX_DAYS="3" \
     REDIS_PORT="6379" \
     REDIS_DB="0"
 
-CMD ["/startLoop.sh"]
+CMD ["/startClean.sh"]
