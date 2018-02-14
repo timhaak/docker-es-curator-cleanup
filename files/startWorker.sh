@@ -16,16 +16,14 @@ export WORKER_TIMEOUT
 export WORKER_RESULT_TIMEOUT
 export WORKER_LOGGING_LEVEL
 
-echo rq worker \
-  -v \
-  --url redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB} \
-  --worker-ttl ${WORKER_TIMEOUT} \
-  --results-ttl ${WORKER_RESULT_TIMEOUT} \
-  --logging_level ${WORKER_LOGGING_LEVEL}
+echo "Running the following command"
+echo rq worker -v --url redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB} --logging_level ${WORKER_LOGGING_LEVEL}
+echo ""
+echo ""
+echo ""
 
-  rq worker \
-    -v \
-    --url redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB} \
-    --worker-ttl ${WORKER_TIMEOUT} \
-    --results-ttl ${WORKER_RESULT_TIMEOUT} \
-    --logging_level ${WORKER_LOGGING_LEVEL}
+# while [ 1 ]
+# do
+#     sleep 5
+# done
+rq worker -v --url redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB} --logging_level ${WORKER_LOGGING_LEVEL}

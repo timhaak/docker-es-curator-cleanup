@@ -13,5 +13,8 @@ export LOG_LEVEL
 export REDIS_PORT
 export REDIS_DB
 export REDIS_HOST
+export WORKER_TIMEOUT
+export WORKER_RESULT_TIMEOUT
+export WORKER_LOGGING_LEVEL
 
 /usr/local/bin/python3 /es-curator-cleanup/clean_indexes.py

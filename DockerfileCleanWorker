@@ -1,7 +1,7 @@
 FROM artifactory.mmih.biz:5000/es-curator-cleanup
 
-ENV WORKER_TIMEOUT=3600 \
-    WORKER_RESULT_TIMEOUT=36000 \
-    WORKER_LOGGING_LEVEL=INFO
+COPY ./files/startWorker.sh /startWorker.sh
+
+RUN chmod u+x /startWorker.sh
 
 CMD ["/startWorker.sh"]
