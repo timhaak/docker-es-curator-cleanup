@@ -1,0 +1,7 @@
+FROM artifactory.mmih.biz:5000/es-curator-cleanup
+
+COPY ./files/startDashboard.sh /startDashboard.sh
+
+RUN chmod u+x /startDashboard.sh
+
+CMD ["/startDashboard.sh"]

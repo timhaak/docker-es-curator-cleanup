@@ -7,3 +7,5 @@ docker push artifactory.mmih.biz:5000/es-curator-cleanup
 docker push artifactory.mmih.biz:5000/es-curator-cleanup-worker
 ./buildMMICuratorLoop.sh
 docker push artifactory.mmih.biz:5000/es-curator-cleanup-loop
+./buildMMICuratorDashboard.sh
+docker push artifactory.mmih.biz:5000/es-curator-cleanup-dashboard

@@ -15,24 +15,27 @@ WORKDIR /es-curator-cleanup
 COPY ./files/startClean.sh /startClean.sh
 COPY ./files/startLoop.sh /startLoop.sh
 COPY ./files/startWorker.sh /startWorker.sh
+COPY ./files/startDashboard.sh /startDashboard.sh
 
-RUN chmod u+x /startClean.sh /startLoop.sh /startWorker.sh
+RUN chmod u+x /startClean.sh /startLoop.sh /startWorker.sh /startDashboard.sh
 
 ENV MAX_DAYS="3" \
     MAX_INDEXES="1" \
-    MAX_SUB_INDEXES="1" \
+    MAX_SUB_INDEXES="-1" \
     ES_SERVER="" \
     ES_SERVER_PORT="" \
     ES_SERVER_USERNAME="" \
     ES_SERVER_PASSWORD="" \
     FILTER_PREFIX="" \
     LOG_LEVEL="INFO" \
-    REDIS_HOST="redis" \
+    REDIS_HOST="localhost" \
     REDIS_PORT="6379" \
     REDIS_DB="0" \
     WORKER_TIMEOUT=3600 \
     WORKER_QUEUE_TIMEOUT=86400 \
     WORKER_RESULT_TIMEOUT=86400 \
-    WORKER_LOGGING_LEVEL=INFO
+    WORKER_LOGGING_LEVEL=INFO \
+    JOB_QUEUE_NAME=curator \
+    DASHBORD_PORT=5555
 
 CMD ["/startClean.sh"]

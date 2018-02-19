@@ -1,6 +1,4 @@
 #!/bin/ash
-rm -rf /es-curator-cleanup/curator_config.yml /es-curator-cleanup/curator_action.yml
-
 export MAX_DAYS
 export MAX_INDEXES
 export MAX_SUB_INDEXES
@@ -16,5 +14,9 @@ export REDIS_HOST
 export WORKER_TIMEOUT
 export WORKER_RESULT_TIMEOUT
 export WORKER_LOGGING_LEVEL
+export JOB_QUEUE_NAME
+export DASHBORD_PORT
+
+rm -rf /es-curator-cleanup/curator_config.yml /es-curator-cleanup/curator_action.yml
 
 /usr/local/bin/python3 /es-curator-cleanup/clean_indexes.py
