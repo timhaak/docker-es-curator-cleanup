@@ -41,7 +41,7 @@ export DASHBORD_PORT
 #     sleep 5
 # done
 CMD="celery \
-  --app tasks \
+  -A tasks \
   worker \
   --loglevel=${LOG_LEVEL} \
   --concurrency=1 \
