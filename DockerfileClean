@@ -1,6 +1,5 @@
 FROM artifactory.mmih.biz:5000/es-curator-base
 
-
 RUN apk -U update && \
     apk upgrade && \
     rm -rf /tmp/src && \
@@ -36,6 +35,10 @@ ENV MAX_DAYS="3" \
     WORKER_RESULT_TIMEOUT=86400 \
     WORKER_LOGGING_LEVEL=INFO \
     JOB_QUEUE_NAME=curator \
-    DASHBORD_PORT=5555
+    DASHBORD_PORT=5555 \
+    INDEX_SHARDS=4 \
+    INDEX_REPLICAS=1 \
+    REINDEX_SLICES=4 \
+    REINDEX_BATCH_SIZE=4000
 
 CMD ["/startClean.sh"]
