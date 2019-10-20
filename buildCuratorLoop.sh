@@ -4,4 +4,4 @@ docker build  \
   --no-cache \
   --pull \
   --file ./DockerfileCleanLoop \
-  -t artifactory.mmih.biz:5000/es-curator-cleanup-loop .
+  -t timhaak/es-curator-cleanup-loop .

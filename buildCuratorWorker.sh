@@ -4,4 +4,4 @@ docker build  \
   --no-cache \
   --pull \
   --file ./DockerfileCleanWorker \
-  -t artifactory.mmih.biz:5000/es-curator-cleanup-worker .
+  -t timhaak/es-curator-cleanup-worker .
