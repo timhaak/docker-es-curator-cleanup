@@ -1,4 +1,4 @@
-FROM artifactory.mmih.biz:5000/es-curator-cleanup
+FROM timhaak/es-curator-cleanup
 
 COPY ./files/startLoop.sh /startLoop.sh
 

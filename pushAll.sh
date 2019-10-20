@@ -1,5 +1,5 @@
 #!/bin/bash
-docker push artifactory.mmih.biz:5000/es-curator-base
-docker push artifactory.mmih.biz:5000/es-curator-cleanup
-docker push artifactory.mmih.biz:5000/es-curator-cleanup-worker
-docker push artifactory.mmih.biz:5000/es-curator-cleanup-dashboard
+docker push timhaak/es-curator-base
+docker push timhaak/es-curator-cleanup
+docker push timhaak/es-curator-cleanup-worker
+docker push timhaak/es-curator-cleanup-dashboard
